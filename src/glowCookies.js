@@ -29,7 +29,7 @@ class GlowCookies {
     stylesheet.setAttribute("rel", "stylesheet");
     stylesheet.setAttribute(
       "href",
-      `https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.3/src/glowCookies.min.css`
+      `https://cdn.jsdelivr.net/gh/a133xz/GlowCookies@master/dist/glowCookies.css`
     );
     document.head.appendChild(stylesheet);
   }
