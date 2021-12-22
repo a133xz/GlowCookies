@@ -10,15 +10,13 @@
     "production": "npm run bump && npm run minify",
     "minify": "npm run minify:js && npm run minify:css",
     "minify:js": "minify ./src/glowCookies.js > ./dist/glowCookies.js",
-    "minify:css": "minify ./src/glowCookies.css > ./dist/glowCookies.css"
+    "minify:css": "minify ./src/glowCookies.css > ./dist/glowCookies.css",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "husky": "^7.0.4",
     "minify": "^8.0.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run production"
-    }
+  "devDependencies": {
+    "husky": "^7.0.0"
   }
 }
