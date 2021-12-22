@@ -13,6 +13,12 @@
     "minify:css": "minify ./src/glowCookies.css > ./dist/glowCookies.css"
   },
   "dependencies": {
+    "husky": "^7.0.4",
     "minify": "^8.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run production"
+    }
   }
 }
