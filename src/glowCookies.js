@@ -183,6 +183,10 @@ class GlowCookies {
       AnalyticsData.text = `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
+                        gtag('consent', 'default', {
+                          ad_storage: 'denied',
+                          analytics_storage: 'denied'
+                        });
                         gtag('config', '${this.tracking.AnalyticsCode}' , {
                             'client_storage': 'none',
                             'anonymize_ip': true
