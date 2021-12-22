@@ -134,42 +134,12 @@ class GlowCookies {
 
     // Facebook pixel tracking code
     if (this.tracking.FacebookPixelCode) {
-      let FacebookPixelData = document.createElement('script');
-      FacebookPixelData.text = `
-                                    !function(f,b,e,v,n,t,s)
-                                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                                    n.queue=[];t=b.createElement(e);t.async=!0;
-                                    t.src=v;s=b.getElementsByTagName(e)[0];
-                                    s.parentNode.insertBefore(t,s)}(window, document,'script',
-                                    'https://connect.facebook.net/en_US/fbevents.js');
-                                    fbq('init', '${this.tracking.FacebookPixelCode}');
-                                    fbq('track', 'PageView');
-                                `;
-      document.head.appendChild(FacebookPixelData);
-      let FacebookPixel = document.createElement('noscript');
-      FacebookPixel.setAttribute('height', `1`);
-      FacebookPixel.setAttribute('width', `1`);
-      FacebookPixel.setAttribute('style', `display:none`);
-      FacebookPixel.setAttribute('src', `https://www.facebook.com/tr?id=${this.tracking.FacebookPixelCode}&ev=PageView&noscript=1`);
-      document.head.appendChild(FacebookPixel);
+
     }
 
     // Hotjar Tracking
     if (this.tracking.HotjarTrackingCode) {
-      let hotjarTrackingData = document.createElement('script');
-      hotjarTrackingData.text = `
-                                (function(h,o,t,j,a,r){
-                                    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                                    h._hjSettings={hjid:${this.tracking.HotjarTrackingCode},hjsv:6};
-                                    a=o.getElementsByTagName('head')[0];
-                                    r=o.createElement('script');r.async=1;
-                                    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                                    a.appendChild(r);
-                                })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-                                `;
-      document.head.appendChild(hotjarTrackingData);
+     
     }
   }
 
@@ -194,25 +164,6 @@ class GlowCookies {
       document.head.appendChild(AnalyticsData);
     }
 
-    // Clear cookies - not working 100%
-    this.clearCookies()
-  }
-
-  clearCookies() {
-    let cookies = document.cookie.split("; ");
-    for (let c = 0; c < cookies.length; c++) {
-      let d = window.location.hostname.split(".");
-      while (d.length > 0) {
-        let cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
-        let p = location.pathname.split('/');
-        document.cookie = cookieBase + '/';
-        while (p.length > 0) {
-          document.cookie = cookieBase + p.join('/');
-          p.pop();
-        };
-        d.shift();
-      }
-    }
   }
 
   addCustomScript() {
@@ -298,30 +249,7 @@ class LanguagesGC {
 
   init() {
     this.arrLang = {
-      af: {
-        'bannerHeading': 'Ons gebruik koekies',
-        'bannerDescription': 'Ons gebruik ons eie koekies en die van derdepartye, om inhoud te verpersoonlik en om webverkeer te ontleed.',
-        'bannerLinkText': 'Lees meer oor koekies',
-        'acceptBtnText': 'Aanvaar koekies',
-        'rejectBtnText': 'Weier',
-        'manageText': 'Koekie-instellings'
-      },
-      bg: {
-        'bannerHeading': 'Ние използваме бисквитки',
-        'bannerDescription': 'Използваме наши и бисквитки на трети страни, за да запазим Вашите предпочитания и да събираме аналитични данни.',
-        'bannerLinkText': 'Прочетете повече за бисквитките',
-        'acceptBtnText': 'Приеми бисквитките',
-        'rejectBtnText': 'Откажи',
-        'manageText': 'Настрой бисквитките'
-      },
-      de: {
-        'bannerHeading': 'Verwendung von Cookies',
-        'bannerDescription': 'Wir nutzen Eigene und Cookies Dritter um Inhalte zu personalisieren und Surfverhalten zu analysieren.',
-        'bannerLinkText': 'Mehr über Cookies',
-        'acceptBtnText': 'Cookies akzeptieren',
-        'rejectBtnText': 'Ablehnen',
-        'manageText': 'Cookies verwalten'
-      },
+     
       en: {
         'bannerHeading': 'We use cookies',
         'bannerDescription': 'We use our own and third-party cookies to personalize content and to analyze web traffic.',
@@ -330,30 +258,6 @@ class LanguagesGC {
         'rejectBtnText': 'Reject',
         'manageText': 'Manage cookies'
       },
-      sv: {
-        'bannerHeading': 'Vi använder cookies',
-        'bannerDescription' : 'Vi använder våra egna och tredjepartscookies för att personalisera innehåll och till statistik.',
-        'bannerLinkText' : 'Läs mer om cookies',
-        'acceptBtnText' : 'Acceptera cookies',
-        'rejectBtnText' : 'Avslå',
-        'manageText' : 'Hantera cookies'
-      },
-      no: {
-        'bannerHeading': 'Vi benytter cookies',
-        'bannerDescription' : 'Vi benytter våre egne og tredjepartscookies for å personalisere innehold og til statistikk.',
-        'bannerLinkText' : 'Les mer om cookies',
-        'acceptBtnText' : 'Aksepter cookies',
-        'rejectBtnText' : 'Avslå',
-        'manageText' : 'Håndter cookies'
-      },
-      da: {
-        'bannerHeading': 'Vi bruger cookies',
-        'bannerDescription' : 'Vi bruger vores egne og tredjepartscookies til at tilpasse indhold og måle statistik.',
-        'bannerLinkText' : 'Læs mere om cookies',
-        'acceptBtnText' : 'Accepter cookies',
-        'rejectBtnText' : 'Afvis',
-        'manageText' : 'Administrer cookies'
-      },
       es: {
         'bannerHeading': 'Uso de cookies',
         'bannerDescription': 'Utilizamos cookies propias y de terceros para personalizar el contenido y para analizar el tráfico de la web.',
@@ -361,102 +265,6 @@ class LanguagesGC {
         'acceptBtnText': 'Aceptar cookies',
         'rejectBtnText': 'Rechazar',
         'manageText': 'Cookies'
-      },
-      fr: {
-        'bannerHeading': 'Nous utilisons des cookies',
-        'bannerDescription': 'Nous utilisons nos propres cookies et ceux de tiers pour adapter le contenu et analyser le trafic web.',
-        'bannerLinkText': 'En savoir plus sur les cookies',
-        'acceptBtnText': 'Accepter les cookies',
-        'rejectBtnText': 'Refuser',
-        'manageText': 'Paramétrez les cookies'
-      },
-      it: {
-        'bannerHeading': 'Utilizziamo i cookie',
-        'bannerDescription': 'Utilizziamo cookie nostri e di terze parti per personalizzare il contenuto e analizzare il traffico web.',
-        'bannerLinkText': 'Per saperne di più riguardo i cookie',
-        'acceptBtnText': 'Accetta i cookie',
-        'rejectBtnText': 'Rifiuta',
-        'manageText': 'Gestisci i cookie'
-      },
-      mg: {
-        'bannerHeading': 'Izahay dia mampiasa cookies',
-        'bannerDescription': "Mampiasa ny cookies anay manokana sy ireo an'ny antoko fahatelo izahay hampifanarahana ny atiny sy hamakafaka ny fivezivezena amin'ny tranonkala.",
-        'bannerLinkText': 'Maniry halala bebe kokoa momba ny cookies',
-        'acceptBtnText': 'Manaiky ireo cookies',
-        'rejectBtnText': 'Tsy mety',
-        'manageText': 'Hamboarina ny cookies'
-      },
-      nl: {
-        'bannerHeading': 'We gebruiken cookies',
-        'bannerDescription': 'We gebruiken onze en third-party cookies om content te personaliseren en web traffic te analyseren.',
-        'bannerLinkText': 'Lees meer over cookies',
-        'acceptBtnText': 'Accepteren cookies',
-        'rejectBtnText': 'Wijgeren',
-        'manageText': 'Cookies beheren'
-      },
-      oc: {
-        'bannerHeading': 'Utilizam de cookies',
-        'bannerDescription': 'Utilizam nòstres pròpris cookies e de cookies tèrces per adaptar lo contengut e analisar lo trafic web.',
-        'bannerLinkText': 'Ne saber mai suls cookies',
-        'acceptBtnText': 'Acceptar los cookies',
-        'rejectBtnText': 'Refusar',
-        'manageText': 'Configurar los cookies'
-      },        
-      pt_BR: {
-        'bannerHeading': 'Uso de cookies',
-        'bannerDescription': 'Usamos cookies próprios e de terceiros para personalizar o conteúdo e analisar o tráfego da web.',
-        'bannerLinkText': 'Leia mais sobre os cookies',
-        'acceptBtnText': 'Aceitar cookies',
-        'rejectBtnText': 'Rejeitar',
-        'manageText': 'Gerenciar cookies'
-      },
-      ru: {
-        'bannerHeading': 'Позвольте использовать куки?',
-        'bannerDescription': 'Мы используем собственные и сторонние куки для персонализации контента и анализа веб-трафика.',
-        'bannerLinkText': 'Узнать больше про куки.',
-        'acceptBtnText': 'Ок, используйте',
-        'rejectBtnText': 'Не разрешаю',
-        'manageText': 'Разрешите использовать куки?'
-      },
-      sk: {
-        'bannerHeading': 'Používame cookies',
-        'bannerDescription': 'Na prispôsobenie obsahu a analýzu webovej stránky používame vlastné cookies a cookies tretích strán.',
-        'bannerLinkText': 'Čo sú cookies?',
-        'acceptBtnText': 'Povoliť cookies',
-        'rejectBtnText': 'Nepovoliť',
-        'manageText': 'Spravovať cookies'
-      },
-      th: {
-        'bannerHeading': 'Cookies',
-        'bannerDescription': 'พวกเราใช้คุกกี้บุคคลที่สาม เพื่อปรับแต่งเนื้อหาและวิเคราะห์การเข้าชมเว็บ',
-        'bannerLinkText': 'อ่านเพิ่มเติมเกี่ยวกับคุกกี้',
-        'acceptBtnText': 'ยอมรับคุกกี้',
-        'rejectBtnText': 'ปฏิเสธคุกกี้',
-        'manageText': 'Cookies'
-      },
-      tr: {
-        'bannerHeading': 'Çerez kullanımı',
-        'bannerDescription': 'İçeriği kişiselleştirmek ve web trafiğini analiz etmek için kendi ve üçüncü taraf çerezlerimizi kullanıyoruz.',
-        'bannerLinkText': 'Çerezler hakkında daha fazlasını okuyun',
-        'acceptBtnText': 'Çerezleri kabul et',
-        'rejectBtnText': 'Reddet',
-        'manageText': 'Çerezleri yönet'
-      },
-      ja: {
-        'bannerHeading': 'Cookies を使用しています',
-        'bannerDescription': '私たちは、コンテンツのパーソナライズやトラフィックの分析のために、独自およびサードパーティー製 Cookies を使用しています。',
-        'bannerLinkText': 'Cookiesについて詳しく見る',
-        'acceptBtnText': 'Cookiesを受け入れる',
-        'rejectBtnText': '拒否',
-        'manageText': 'cookies管理'
-      },
-      zh_TW: {
-        'bannerHeading': '我們使用 Cookies',
-        'bannerDescription' : '我們使用了自己和第三方的 cookies 來個人化您的內容和分析網頁的流量。',
-        'bannerLinkText' : '閱讀更多關於 cookies',
-        'acceptBtnText' : '同意 cookies',
-        'rejectBtnText' : '拒絕',
-        'manageText' : '管理 cookies'
       }
     }
   }
