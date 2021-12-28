@@ -83,14 +83,17 @@ class GlowCookies {
   }
 
   checkStatus() {
-    switch (localStorage.getItem("GlowCookies")) {
-      case "1":
-        this.openManageCookies();
-        this.activateTracking();
-        this.addCustomScript();
+    const glowCookiesDate = localStorage.getItem("GlowCookies");
+    const dateNow = new Date().getTime();
+    if (Math.abs(glowCookiesDate) < dateNow) {
+      return this.openSelector();
+    }
+    switch (Math.sign(glowCookiesDate)) {
+      case 1:
+        this.addAnalytics();
         break;
-      case "0":
-        this.openManageCookies();
+      case -1:
+        this.rejectAnalytics();
         break;
       default:
         this.openSelector();
@@ -107,17 +110,34 @@ class GlowCookies {
     this.DOMbanner.classList.add("glowCookies__show");
   }
 
-  acceptCookies() {
-    localStorage.setItem("GlowCookies", "1");
+  // 1 is Accept, -1 Reject
+  setLocalStorageDate(status) {
+    const date = new Date();
+    const endingMonth = date.getMonth() + 13;
+    const setNewMonth = date.setMonth(endingMonth);
+    const newDateTime = new Date(setNewMonth).getTime();
+    localStorage.setItem("GlowCookies", newDateTime * status);
+  }
+
+  addAnalytics() {
     this.openManageCookies();
     this.activateTracking();
     this.addCustomScript();
   }
 
-  rejectCookies() {
-    localStorage.setItem("GlowCookies", "0");
+  rejectAnalytics() {
     this.openManageCookies();
     this.disableTracking();
+  }
+
+  acceptCookies() {
+    this.setLocalStorageDate(1);
+    this.addAnalytics();
+  }
+
+  rejectCookies() {
+    this.setLocalStorageDate(-1);
+    this.rejectAnalytics();
   }
 
   activateTracking() {
