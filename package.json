@@ -1,7 +1,7 @@
 {
-  "name": "cookies",
-  "version": "1.0.7",
-  "description": "GlowCookies task",
+  "name": "cookie-banner",
+  "version": "1.0.8",
+  "description": "Cookie banner forked from GlowCookies",
   "repository": "https://github.com/a133xz/GlowCookies",
   "author": "Antonio R <22479344+a133xz@users.noreply.github.com>",
   "license": "MIT",
