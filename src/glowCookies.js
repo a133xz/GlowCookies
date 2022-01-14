@@ -8,6 +8,8 @@
 (function () {
   class GlowCookies {
     constructor() {
+      // Cookie name
+      this.cookieName = "glowCookieStatus";
       // Cookies banner
       this.banner = undefined;
       // Config
@@ -88,12 +90,8 @@
     }
 
     checkStatus() {
-      const glowCookiesDate = localStorage.getItem("GlowCookies");
-      const dateNow = new Date().getTime();
-      if (Math.abs(glowCookiesDate) < dateNow) {
-        return this.openSelector();
-      }
-      switch (Math.sign(glowCookiesDate)) {
+      const glowCookieStatus = this.getCookie(this.cookieName);
+      switch (Math.sign(glowCookieStatus)) {
         case 1:
           this.addAnalytics();
           break;
@@ -116,12 +114,32 @@
     }
 
     // 1 is Accept, -1 Reject
-    setLocalStorageDate(status) {
-      const date = new Date();
-      const endingMonth = date.getMonth() + 13;
-      const setNewMonth = date.setMonth(endingMonth);
-      const newDateTime = new Date(setNewMonth).getTime();
-      localStorage.setItem("GlowCookies", newDateTime * status);
+    setCookie(cname, cvalue, exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    // 1 is Accept, -1 Reject
+    setCookieStatus(status) {
+      this.setCookie(this.cookieName, status, 365 + 31);
     }
 
     addAnalytics() {
@@ -136,12 +154,12 @@
     }
 
     acceptCookies() {
-      this.setLocalStorageDate(1);
+      this.setCookieStatus(1);
       this.addAnalytics();
     }
 
     rejectCookies() {
-      this.setLocalStorageDate(-1);
+      this.setCookieStatus(-1);
       this.rejectAnalytics();
     }
 
