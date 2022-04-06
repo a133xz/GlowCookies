@@ -27,11 +27,11 @@
   position: fixed;
   width: auto;
   max-width: 375px;
-  z-index: 999;
-  -webkit-box-shadow: 0 .625em 1.875em rgba(2,2,3,.2);
-  -moz-box-shadow: 0 .625em 1.875em rgba(2,2,3,.2);
-  box-shadow: 0 .625em 1.875em rgba(2,2,3,.2);
-  transition: transform .2s ease, opacity .2s ease !important;
+  z-index: 9999;
+  -webkit-box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.2);
+  -moz-box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.2);
+  box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.2);
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
 }
 
 .glowCookies__banner .accept__btn__styles {
@@ -44,6 +44,7 @@
   font-weight: bolder;
   transition: filter 0.15s;
   user-select: none;
+  white-space: nowrap;
 }
 
 .glowCookies__banner .settings__btn__styles {
@@ -77,7 +78,7 @@
   }
 
   .btn__section .btn__settings {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -124,20 +125,19 @@
 
 @media (max-width: 455px) {
   .glowCookies__banner__1 {
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      margin: 7px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 7px;
   }
 
   .glowCookies__banner__1 .btn__section {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
   }
 }
-
 
 /* BANNER STYLE 2 */
 /* ========================= */
@@ -182,19 +182,19 @@
 
 @media (max-width: 455px) {
   .glowCookies__banner__2 {
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      border-radius: 0px;
-      border: 0px;
-      max-width: 550px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-radius: 0px;
+    border: 0px;
+    max-width: 550px;
   }
 
   .glowCookies__banner__2 .btn__section {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
   }
 }
 
@@ -241,19 +241,19 @@
 
 @media (max-width: 455px) {
   .glowCookies__banner__3 {
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      border-radius: 0px;
-      border: 0px;
-      max-width: 550px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-radius: 0px;
+    border: 0px;
+    max-width: 550px;
   }
 
   .glowCookies__banner__3 .btn__section {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
   }
 }
 
@@ -274,9 +274,9 @@
   padding: 12px 18px;
   text-decoration: none;
   user-select: none;
-  -webkit-box-shadow: 0 .625em 1.875em rgba(2,2,3,.1);
-  -moz-box-shadow: 0 .625em 1.875em rgba(2,2,3,.1);
-  box-shadow: 0 .625em 1.875em rgba(2,2,3,.1);
+  -webkit-box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.1);
+  -moz-box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.1);
+  box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.1);
 }
 
 .prebanner__border__1 {
@@ -292,14 +292,13 @@
 }
 
 .animation {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .animation:hover {
-  transform: scale(.97);
+  transform: scale(0.97);
 }
 
 .prebanner:hover {
   text-decoration: none;
 }
-

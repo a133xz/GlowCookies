@@ -3,6 +3,9 @@
   CREATED BY MANUEL CARRILLO
   https://github.com/manucaralmo/GlowCookies
   2021 - v 3.1.3
+
+  REMIX BY ANTONIO R 2022
+  https://github.com/a133xz/GlowCookies
 */
 
 (function () {
@@ -103,11 +106,6 @@
       }
     }
 
-    openManageCookies() {
-      this.PreBanner.style.display = this.config.hideAfterClick ? "none" : "block";
-      this.DOMbanner.classList.remove("glowCookies__show");
-    }
-
     openSelector() {
       this.PreBanner.style.display = "none";
       this.DOMbanner.classList.add("glowCookies__show");
@@ -140,6 +138,11 @@
     // 1 is Accept, -1 Reject
     setCookieStatus(status) {
       this.setCookie(this.cookieName, status, 365 + 31);
+    }
+
+    openManageCookies() {
+      this.PreBanner.style.display = this.config.hideAfterClick ? "none" : "block";
+      this.DOMbanner.classList.remove("glowCookies__show");
     }
 
     addAnalytics() {
@@ -278,10 +281,15 @@
         },
       };
 
-      // Draw banner
-      window.addEventListener("load", () => {
+      // If document is already complete you don't need the event
+      if (document.readyState === "complete") {
         this.render();
-      });
+      } else {
+        // Draw banner
+        window.addEventListener("load", () => {
+          this.render();
+        });
+      }
     }
   }
 
